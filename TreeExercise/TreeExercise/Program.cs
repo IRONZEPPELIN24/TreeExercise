@@ -11,7 +11,10 @@ namespace TreeExercise
         static void Main(string[] args)
         {
             Tree tree = new Tree();
-            tree.Create(1);
+            for (int i = 0; i < 3; i++)
+            {
+                tree.Create(1);
+            }
             tree.Print();
 
             Console.ReadLine();

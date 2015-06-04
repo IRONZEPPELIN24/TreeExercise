@@ -20,7 +20,7 @@ namespace TreeExercise
             }
             else
             {
-                CreateTree(data, root);
+                CreateTree(root);
             }
         }
         public void Print()
@@ -36,50 +36,76 @@ namespace TreeExercise
             }
         }
 
-        private void CreateTree(int iterations, Node node)
+        private void CreateTree(Node node)
         {            
-            //loop through number of iterations that the user enters
-            for (int i = 0; i < iterations; i++)
+            //check in there is a rightchild, then check neighbor to assign value
+            if (node.RightChild == null)
             {
-                //check in there is a rightchild, then check neighbor to assign value
-                if (node.RightChild == null)
+                //if there is a missing neighbor, assign value of root
+                if (node.RightNeighbor == null || node.LeftNeighbor == null)
                 {
-                    //if there is a missing neighbor, assign value of root
-                    if (node.RightNeighbor == null || node.LeftNeighbor == null)
-                    {
-                        node.RightChild = new Node(node.Data);
-                    }
-
-                    //add values of neighbors to assign correct child value
-                    else
-                    {
-                        int newValue = node.RightNeighbor.Data + node.LeftNeighbor.Data;
-                        node.RightChild = new Node(newValue);
-                    }
+                    node.RightChild = new Node(node.Data);
+                    //Console.WriteLine(node.RightChild.Data);
+                    //CreateTree(node.RightChild);
                 }
 
-                //check if ther eis a leftchild, then check neighbor to assing value
-                if (node.LeftChild == null)
+                //add values of neighbors to assign correct child value
+                else
                 {
-                    //if there is a missing neighbor, assign value of root
-                    if (node.RightNeighbor == null || node.LeftNeighbor == null)
-                    {
-                        node.LeftChild = new Node(node.Data);
-                    }
-                    
-                    //add values of neighbors to assign correct child value
-                    else
-                    {
-                        int newValue = node.RightNeighbor.Data + node.LeftNeighbor.Data;
-                        node.LeftChild = new Node(newValue);
-                    }
+                    int newValue = node.RightNeighbor.Data + node.LeftNeighbor.Data;
+                    node.RightChild = new Node(newValue);
+                    Console.WriteLine("Else: " + node.RightChild.Data);
+                    CreateTree(node.RightChild);
                 }
+            }
+            else
+            {
+                CreateTree(node.RightChild);
+            }
+
+            //check if ther eis a leftchild, then check neighbor to assing value
+            if (node.LeftChild == null)
+            {
+                //if there is a missing neighbor, assign value of root
+                if (node.RightNeighbor == null || node.LeftNeighbor == null)
+                {
+                    node.LeftChild = new Node(node.Data);
+                    //Console.WriteLine(node.LeftChild.Data);
+                    //CreateTree(node.LeftChild);
+                }
+
+                //add values of neighbors to assign correct child value
+                else
+                {
+                    int newValue = node.RightNeighbor.Data + node.LeftNeighbor.Data;
+                    node.LeftChild = new Node(newValue);
+                    Console.WriteLine("Else: " + node.LeftChild.Data);
+                    CreateTree(node.LeftChild);
+                }
+            }
+            else
+            {
+                CreateTree(node.LeftChild);
             }
         }
 
         private void PrintTree(Node node, int level)
         {
-
+            for (int i = 0; i < level; i++)
+            {
+                Console.WriteLine("|");
+                //Console.WriteLine("Level: " + level);
+            }
+            Console.WriteLine(node.Data);
+            level++;
+            if (node.RightChild != null)
+            {
+                PrintTree(node.RightChild, level);
+            }
+            if (node.LeftChild != null)
+            {
+                PrintTree(node.LeftChild, level);
+            }
         }
     }
 }

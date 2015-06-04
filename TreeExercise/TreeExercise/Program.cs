@@ -10,6 +10,11 @@ namespace TreeExercise
     {
         static void Main(string[] args)
         {
+            Tree tree = new Tree();
+            tree.Create(1);
+            tree.Print();
+
+            Console.ReadLine();
         }
 
     }

@@ -12,6 +12,8 @@ namespace TreeExercise
         private int data;
         private Node rightChild;
         private Node leftChild;
+        private Node leftNeighbor;
+        private Node rightNeighbor;
 
         //Create the properties
         public int Data
@@ -30,6 +32,18 @@ namespace TreeExercise
         {
             get { return leftChild; }
             set { leftChild = value; }
+        }
+
+        public Node LeftNeighbor
+        {
+            get { return leftNeighbor; }
+            set { leftNeighbor = value; }
+        }
+
+        public Node RightNeighbor
+        {
+            get { return rightNeighbor; }
+            set { rightNeighbor = value; }
         }
 
         public Node(int data)

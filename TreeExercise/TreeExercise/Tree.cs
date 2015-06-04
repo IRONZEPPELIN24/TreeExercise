@@ -9,12 +9,12 @@ namespace TreeExercise
     class Tree
     {
         //Attributes
-        private Node root; 
+        private Node root;
 
         //Methods needed for the Tree class
         public void Create(int data)
         {
-            if (root = null)
+            if (root == null)
             {
                 root = new Node(data);
             }
@@ -36,9 +36,45 @@ namespace TreeExercise
             }
         }
 
-        private void CreateTree(int data, Node node)
-        {
-            
+        private void CreateTree(int iterations, Node node)
+        {            
+            //loop through number of iterations that the user enters
+            for (int i = 0; i < iterations; i++)
+            {
+                //check in there is a rightchild, then check neighbor to assign value
+                if (node.RightChild == null)
+                {
+                    //if there is a missing neighbor, assign value of root
+                    if (node.RightNeighbor == null || node.LeftNeighbor == null)
+                    {
+                        node.RightChild = new Node(node.Data);
+                    }
+
+                    //add values of neighbors to assign correct child value
+                    else
+                    {
+                        int newValue = node.RightNeighbor.Data + node.LeftNeighbor.Data;
+                        node.RightChild = new Node(newValue);
+                    }
+                }
+
+                //check if ther eis a leftchild, then check neighbor to assing value
+                if (node.LeftChild == null)
+                {
+                    //if there is a missing neighbor, assign value of root
+                    if (node.RightNeighbor == null || node.LeftNeighbor == null)
+                    {
+                        node.LeftChild = new Node(node.Data);
+                    }
+                    
+                    //add values of neighbors to assign correct child value
+                    else
+                    {
+                        int newValue = node.RightNeighbor.Data + node.LeftNeighbor.Data;
+                        node.LeftChild = new Node(newValue);
+                    }
+                }
+            }
         }
 
         private void PrintTree(Node node, int level)

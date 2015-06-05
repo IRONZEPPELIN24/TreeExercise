@@ -45,8 +45,6 @@ namespace TreeExercise
                 if (node.RightNeighbor == null || node.LeftNeighbor == null)
                 {
                     node.RightChild = new Node(node.Data);
-                    //Console.WriteLine(node.RightChild.Data);
-                    //CreateTree(node.RightChild);
                 }
 
                 //add values of neighbors to assign correct child value
@@ -55,12 +53,14 @@ namespace TreeExercise
                     int newValue = node.RightNeighbor.Data + node.LeftNeighbor.Data;
                     node.RightChild = new Node(newValue);
                     Console.WriteLine("Else: " + node.RightChild.Data);
-                    CreateTree(node.RightChild);
                 }
             }
+
+            //Run method again once the right child has been created
             else
             {
                 CreateTree(node.RightChild);
+                //node.RightNeighbor = new Node(node.RightChild.Data);
             }
 
             //check if ther eis a leftchild, then check neighbor to assing value
@@ -70,8 +70,6 @@ namespace TreeExercise
                 if (node.RightNeighbor == null || node.LeftNeighbor == null)
                 {
                     node.LeftChild = new Node(node.Data);
-                    //Console.WriteLine(node.LeftChild.Data);
-                    //CreateTree(node.LeftChild);
                 }
 
                 //add values of neighbors to assign correct child value
@@ -80,12 +78,13 @@ namespace TreeExercise
                     int newValue = node.RightNeighbor.Data + node.LeftNeighbor.Data;
                     node.LeftChild = new Node(newValue);
                     Console.WriteLine("Else: " + node.LeftChild.Data);
-                    CreateTree(node.LeftChild);
                 }
             }
+            //Run method again now that the left child has been created
             else
             {
                 CreateTree(node.LeftChild);
+                //node.LeftNeighbor = new Node(node.LeftChild.Data);
             }
         }
 
@@ -93,7 +92,7 @@ namespace TreeExercise
         {
             for (int i = 0; i < level; i++)
             {
-                Console.WriteLine("|");
+                Console.Write("|");
                 //Console.WriteLine("Level: " + level);
             }
             Console.WriteLine(node.Data);
